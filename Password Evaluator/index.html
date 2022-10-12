@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Password Strength Evaluator!</title>
+    <!-- Site Styling Elements -->
+    <style>
+    h1 {
+        color: #c44242;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+		margin-left: 200px;
+        margin-top: 125px;
+
+        }
+	body {
+        background-color: #243543;
+        }
+    label {
+        color: #7bcd08;
+        font-family: monospace;
+        font-size: 20px;
+        margin-left: 90px;
+		margin-top: 50px;
+        }
+     button {
+        background-color: #3847b9;
+		border-color: #4f2490;
+		color: #FFFFFF;
+        font-family: system-ui;
+        font-size: 20px;
+		font-weight: bold;
+        margin-left: 100px;
+		margin-top: 50px;
+		width: 170px;
+        }
+	 input {
+        color: #000000;
+        font-family: system-ui;
+        font-size: 20px;
+        margin-left: 10px;
+		margin-top: 50px;
+		width: 210px;
+        }
+    </style>
+    <script>
+        // callAPI variable with the 'sc' (score) input parameter - the user input
+        var callAPI = (sc)=>{
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            // Store the recieved JSON object as a string in the variable
+            var raw = JSON.stringify({"sc":sc});
+            // Variable that stores API call details
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+
+            // Calling the API with a URL and parsing
+            fetch("https://dwqpedgt87.execute-api.us-west-1.amazonaws.com/test/passwordStrength", requestOptions)
+            .then(response => response.text())
+            .then(result => alert(JSON.parse(result).body))
+            .catch(error => console.log('error', error));
+        }
+    </script>
+</head>
+<body>
+    <h1>HOW STRONG IS YOUR PASSWORD?</h1>
+	<form>
+        <label>Enter Password:</label>
+        <input type="text" id="sc">
+        <!-- Method for the button pressed to turn input into the 'sc' parameter  -->
+        <button type="button" onclick="callAPI(document.getElementById('sc').value)">DETERMINE</button>
+    </form>
+</body>
+</html>
