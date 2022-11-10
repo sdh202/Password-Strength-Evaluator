@@ -1,5 +1,5 @@
 # Password-Strength-Evaluator
-Static website that leverages AWS services, including lambda, S3, and Amplify.
+AWS amplify hosted website that leverages AWS services, including lambda, S3, API Gateway, and DynamoDB.
 
 Link: https://dev3165.d3b9dyx33ftyo7.amplifyapp.com/
 
